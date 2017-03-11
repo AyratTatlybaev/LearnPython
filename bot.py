@@ -4,7 +4,7 @@ def main():
 	updater = Updater('345548542:AAH9dJDqihmalKUtbbtnya4lL_-aLPOFTpo')
 	
 	dp = updater.dispatcher
-	dp.add_handler(CommandHandler('start',green_user))
+	dp.add_handler(CommandHandler('start',greet_user))
 	#добавим много новый handler 
 	dp.add_handler(MessageHandler([Filters.text],talk_to_me))
 
@@ -14,7 +14,7 @@ def main():
 	updater.start_polling()
 	updater.idle()
 
-def green_user(bot, update):
+def greet_user(bot, update):
 	print('Вызван /start')
 	bot.sendMessage(update.message.chat_id, text= 'Давай общаться!')
 
