@@ -4,8 +4,13 @@ new_list = ['Вася','Маша','Петя','Валера','Саша','Даша
 def find_person(name,list):
 	try:
 		while list[0] != name:
-			list.pop(0)	
-		return str(name) + ' нашёлся'	
+			list.pop(0)
+			#список пуст
+			if not list:
+				return str(name) + ' нет в списке'
+				break
+		else:	
+			return str(name) + ' нашёлся'	
 	#Исключение - индекс не в диапазоне
 	except IndexError:
 		return str(name) + ' нет в списке'

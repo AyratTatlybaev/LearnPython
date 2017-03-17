@@ -1,9 +1,18 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from ephem import * 
+import datetime, bot_config
 
 def main():
-	updater = Updater('345548542:AAH9dJDqihmalKUtbbtnya4lL_-aLPOFTpo')
+
+	#определяем текущую дату и время
+	date = datetime.datetime.now()
+
+	updater = Updater(bot_config.token)
 	
 	dp = updater.dispatcher
+	#По команде planet отвечаем в каком она созвездии в данный момент
+	dp.add_handler(CommandHandler('planet',planet_constellation))
+
 	dp.add_handler(CommandHandler('start',greet_user))
 	#добавим много новый handler 
 	dp.add_handler(MessageHandler([Filters.text],talk_to_me))
@@ -25,5 +34,11 @@ def show_error(bot,update,error):
 def talk_to_me(bot, update):
 	print(update.message.text)
 	bot.sendMessage(update.message.chat_id, update.message.text)
+
+#функция возвращающая созвездие, в котором находится планета
+def planet_constellation(bot,update):
+	print('Вызван /planet')
+	ask_planet = message.text
+	bot.sendMessage(update.message.chat_id, text= constellation(ask_planet(date.strftime('%d.%m.%Y'))))
 
 main()

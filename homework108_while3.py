@@ -2,7 +2,7 @@
 def ask_user():
 	input_user = ''
 	while input_user != 'Хорошо':
-		print('Как дела?')
+		print('Как дела?\n')
 		input_user = input()
 	exit()
 #Вывод результата выполнения функции
